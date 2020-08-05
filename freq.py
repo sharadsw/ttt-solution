@@ -31,7 +31,7 @@ def parse_text(text, n):
     freq = {}
     for word in text.split():
         if word not in freq:
-            freq[word] = 0
+            freq[word] = 1
         else:
             freq[word] = freq.get(word) + 1
     # Sorts the dict values into a list of tuples
