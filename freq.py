@@ -1,6 +1,7 @@
 import requests
 import re
-from operators import itemgetter
+from operator import itemgetter
+import sys
 
 # Fetches file from given url
 # Returns the text contained in the file
@@ -34,10 +35,24 @@ def parse_text(text, n):
         else:
             freq[word] = freq.get(word) + 1
     # Sorts the dict values into a list of tuples
-    sort_freq = sorted(freq.items(), key=itemgetter(1))
+    sort_freq = sorted(freq.items(), key=itemgetter(1), reverse=True)
 
-    return sort_freq[:n]
+    return sort_freq[:int(n)]
     
+def main():
+    if len(sys.argv) < 3:
+        print("Invalid args")
+        exit()
+
+    url = sys.argv[1]
+    num = sys.argv[2]
+    file_text = get_file(url)
+    cleaned = clean_text(file_text)
+    nfreq = parse_text(cleaned, num)
+    
+    print("{} most frequent words:".format(num))
+    for k, v in nfreq:
+        print("{}\t{}".format(k, v))
 
 if __name__ == "__main__":
     main()
