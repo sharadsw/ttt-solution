@@ -20,6 +20,8 @@ def get_file(url):
 def clean_text(text):
     text = text.encode("ascii", "ignore").decode("utf-8")
     text = re.sub('\W+', " ", text)
+    text = text.replace(" com", ".com")
+    text = text.strip().lower()
 
     return text
 
