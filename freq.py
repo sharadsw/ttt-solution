@@ -37,15 +37,22 @@ def parse_text(text, n):
     # Sorts the dict values into a list of tuples
     sort_freq = sorted(freq.items(), key=itemgetter(1), reverse=True)
 
+    if n is None:
+        return sort_freq
+
     return sort_freq[:int(n)]
     
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         print("Invalid args")
         exit()
 
     url = sys.argv[1]
-    num = sys.argv[2]
+    try:
+        num = sys.argv[2]
+    except Exception as ex:
+        print("Input n not provided in args: {}".format(ex))
+        num = None
     file_text = get_file(url)
     cleaned = clean_text(file_text)
     nfreq = parse_text(cleaned, num)
