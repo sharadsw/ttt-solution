@@ -15,12 +15,15 @@ def get_file(url):
     return res.text
 
 # Cleans the text fetched from file
-# Removes weird-looking unicode chars
-# Removes escape characters
+# Returns cleaned text
 def clean_text(text):
+    # Removes unicode chars
     text = text.encode("ascii", "ignore").decode("utf-8")
+    # Removes escape chars, punctuations   
     text = re.sub('\W+', " ", text)
-    text = text.replace(" com", ".com")
+    # Fix sitename.com getting separated                   
+    text = text.replace(" com", ".com")   
+    # Remove excess spaces and change to lowercase           
     text = text.strip().lower()
 
     return text
