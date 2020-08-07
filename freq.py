@@ -32,8 +32,14 @@ def clean_text(text):
 # Creates a dict with words and their occurrence
 # Returns a list of tuples with n most frequent words
 def parse_text(text, n=None):
+    tokens = text.split()
+    
+    # if n is too high, set it to None so that function returns all words 
+    if n is not None and int(n) > len(tokens):
+        n = None
+
     freq = {}
-    for word in text.split():
+    for word in tokens:
         if word not in freq:
             freq[word] = 1
         else:
