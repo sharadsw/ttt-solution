@@ -15,7 +15,6 @@ def get_file(url):
     return res.text
 
 # Cleans the text fetched from file
-# Returns cleaned text
 def clean_text(text):
     # Removes unicode chars
     text = text.encode("ascii", "ignore").decode("utf-8")
@@ -32,7 +31,7 @@ def clean_text(text):
 # Parses text to find frequency of words
 # Creates a dict with words and their occurrence
 # Returns a list of tuples with n most frequent words
-def parse_text(text, n):
+def parse_text(text, n=None):
     freq = {}
     for word in text.split():
         if word not in freq:
