@@ -1,0 +1,30 @@
+{% extends base.html %}
+
+{% block title %}
+Solution to the ttt challenge
+{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+        var messages = {{ messages | safe }};
+            for (var i=0; i<messages.length; i++) {
+                alert(messages[i]);
+            }
+    </script>
+  {% endif %}
+{% endwith %}
+
+<div class="container text-center">
+    <form class="form-inline" action="" method="post" validate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.num(class_="form-control") }}
+        </div>
+        {{ form.submit(class_="btn btn-primary") }}
+    </form>
+</div>
+
+{% endblock %}
