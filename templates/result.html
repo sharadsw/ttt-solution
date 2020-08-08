@@ -1,0 +1,20 @@
+<div class="container text-center">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th>Word</th>
+            <th>Frequency</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for k, v in result %}
+        <tr>
+            <th scope="row">{{ loop.index }}</td>
+            <td>{{ k }}</td>
+            <td>{{ v }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
