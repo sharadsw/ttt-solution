@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, NumberRange
 
 class nForm(FlaskForm):
     num = IntegerField("Input N", 
-        validators=[DataRequired(), NumberRange(min=1, message="N must be > 0")])
+        validators=[DataRequired(), NumberRange(min=1, message="N must be a number greater than 0")])
     submit = SubmitField("Go!")
