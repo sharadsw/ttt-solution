@@ -33,10 +33,13 @@ def clean_text(text):
 # Returns a list of tuples with n most frequent words
 def parse_text(text, n=None):
     tokens = text.split()
+    flag = False
     
     # if n is too high, set it to None so that function returns all words 
+    # set flag to true if n too high
     if n is not None and int(n) > len(tokens):
         n = None
+        flag = True
 
     freq = {}
     for word in tokens:
@@ -48,9 +51,9 @@ def parse_text(text, n=None):
     sort_freq = sorted(freq.items(), key=itemgetter(1), reverse=True)
 
     if n is None:
-        return sort_freq
+        return sort_freq, flag
 
-    return sort_freq[:int(n)]
+    return sort_freq[:int(n)], flag
     
 def main():
     if len(sys.argv) < 2:
