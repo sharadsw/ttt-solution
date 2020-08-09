@@ -19,9 +19,13 @@ def clean_text(text):
     # Removes unicode chars
     text = text.encode("ascii", "ignore").decode("utf-8")
     # Removes escape chars, punctuations   
-    text = re.sub('\W+', " ", text)
-    # Fix sitename.com getting separated                   
-    text = text.replace(" com", ".com")   
+    text = re.sub(r'\W+', " ", text)
+    # Avoid separation of urls
+    # Doesn't handle slashes in urls yet              
+    text = text.replace(" com", ".com")
+    text = text.replace("www ", "www.")
+    text = text.replace("https ", "https://")
+    text = text.replace("http ", "http://")
     # Remove excess spaces and change to lowercase           
     text = text.strip().lower()
 
