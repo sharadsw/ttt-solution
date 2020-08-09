@@ -20,12 +20,6 @@ def clean_text(text):
     text = text.encode("ascii", "ignore").decode("utf-8")
     # Removes escape chars, punctuations   
     text = re.sub(r'\W+', " ", text)
-    # Avoid separation of urls
-    # Doesn't handle slashes in urls yet              
-    text = text.replace(" com", ".com")
-    text = text.replace("www ", "www.")
-    text = text.replace("https ", "https://")
-    text = text.replace("http ", "http://")
     # Remove excess spaces and change to lowercase           
     text = text.strip().lower()
 
@@ -69,7 +63,7 @@ def main():
         num = None
     file_text = get_file(url)
     cleaned = clean_text(file_text)
-    nfreq = parse_text(cleaned, num)
+    nfreq, flag = parse_text(cleaned, num)
     
     print("{} most frequent words:".format(num))
     for k, v in nfreq:
