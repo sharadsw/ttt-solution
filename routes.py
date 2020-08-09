@@ -20,7 +20,7 @@ def result():
         nfreq, flag = parse_text(clean, num)
 
         if flag:
-            flash("Warning: N higher than total words, displaying all words instead")
+            flash("Warning: N higher than total unique words, displaying all words instead")
 
         return render_template("index.html", form=form, result=nfreq)
     
