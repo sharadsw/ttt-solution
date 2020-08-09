@@ -13,7 +13,7 @@ def index():
 def result():
     URL = "https://terriblytinytales.com/test.txt"
     form = nForm()
-    if request.method == "POST" and form.validate():
+    if request.method == "POST" and form.validate_on_submit():
         num = form.num.data
         text = get_file(URL)
         clean = clean_text(text)

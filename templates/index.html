@@ -7,10 +7,19 @@ Solution to the ttt challenge
 {% block content %}
 
 <div class="container text-center">
-    <form class="form-inline mt-5" action="" method="post" novalidate>
+    <form class="form-inline mt-5" action="" method="post" validate>
         {{ form.hidden_tag() }}
+
+        {% if form.num.errors %}
+        <div class="container alert alert-danger m-3" role="alert">
+            {% for error in form.num.errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        
         <div class="form-group mr-3">
-            {{ form.num(class_="form-control") }}
+            {{ form.num(class_="form-control", placeholder="Input N") }}
         </div>
         {{ form.submit(class_="btn btn-primary") }}
     </form>
@@ -29,7 +38,6 @@ Solution to the ttt challenge
     </script>
   {% endif %}
 {% endwith %}
-
 
 {% endblock %}
 
