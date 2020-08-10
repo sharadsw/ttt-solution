@@ -30,14 +30,15 @@ flask run
 ![screenshot](http://u.cubeupload.com/gooseyloosey/ttt.png)
 
 ### Code
-The frontend is written with Bootstrap and jinja templating. The backend is written in Flask.
+The frontend is written with Bootstrap and Jinja templating. The backend is written in Flask.
 
 #### freq.py
 This module calculates the word frequency from any given text.
 * The get_file() function retrieves the text from a given url using the requests module.
 * The clean_text() function cleans the given text. Unicode characters, escape characters, punctuations, and extra spaces are removed and then the string is converted to lowercase for consistency.
 * The parse_text() function calculates the word frequency from the given text. The text is split into an array of words. The function iterates over this array and inputs each word into a dict with its corresponding frequency. Using python's sorted() function, this dict is sorted into a list of (word:freq) tuples in descending order, out of which the first N tuples are returned to the caller.
-* If N is not provided as an argument (only possible when running locally) or if N exceeds the total number of unique words, it displays all words instead.
+* If N is not provided as an argument (only possible when running locally) or if N exceeds the total number of unique words, it displays all words instead. If N is negative, the program is terminated.
+* **Approximate runtime:** O(WlogW), where W is the number of words in the text and W >= N.
 
 #### forms.py
 This module uses [Flask-WTForms](https://github.com/lepture/flask-wtf) to define the form to be used in the frontend. WTForms provide backend validation and security against CSRF attacks.
@@ -61,10 +62,10 @@ This module ties the app.py and routes.py modules together and runs the applicat
 ![incorrect](http://u.cubeupload.com/gooseyloosey/incorrect.png)
 
 3. N not provided
-![no-N](http://u.cubeupload.com/gooseyloosey/noN.png)
+![no-N](http://u.cubeupload.com/gooseyloosey/noInpur.png)
 
 4. N too high
-![highN](http://u.cubeupload.com/gooseyloosey/highN.png)
+![highN](http://u.cubeupload.com/gooseyloosey/tooHigh.png)
 
 5. N is negative
 ![negativeTerm](http://u.cubeupload.com/gooseyloosey/negativeTerm.png)
