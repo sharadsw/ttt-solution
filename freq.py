@@ -69,6 +69,11 @@ def main():
     except Exception as ex:
         print("Input n not provided in args: {}".format(ex))
         num = None
+
+    if int(num) < 1:
+        print("N can't be negative")
+        sys.exit()
+
     file_text = get_file(url)
     cleaned = clean_text(file_text)
     nfreq, flag = parse_text(cleaned, num)
