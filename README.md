@@ -27,7 +27,7 @@ Run the flask app. It runs on http://127.0.0.1:5000/
 ```
 flask run
 ```
-![screenshot](http://u.cubeupload.com/gooseyloosey/ttt1.png)
+![screenshot](http://u.cubeupload.com/gooseyloosey/ttt.png)
 
 ### Code
 The frontend is written with Bootstrap and jinja templating. The backend is written in Flask.
@@ -36,10 +36,12 @@ The frontend is written with Bootstrap and jinja templating. The backend is writ
 This module calculates the word frequency from any given text.
 * The get_file() function retrieves the text from a given url using the requests module.
 * The clean_text() function cleans the given text. Unicode characters, escape characters, punctuations, and extra spaces are removed and then the string is converted to lowercase for consistency.
-* The parse_text() function calculates the word frequency from the given text. The text is split into an array of words. The function iterates over this array and inputs each word into a dict with its corresponding frequency. Using python's sorted() function, this dict is sorted into a list of (word:freq) tuples in descending order which is then returned to the caller.
+* The parse_text() function calculates the word frequency from the given text. The text is split into an array of words. The function iterates over this array and inputs each word into a dict with its corresponding frequency. Using python's sorted() function, this dict is sorted into a list of (word:freq) tuples in descending order, out of which the first N tuples are returned to the caller.
+* If N is not provided as an argument (only possible when running locally) or if N exceeds the total number of unique words, it displays all words instead.
 
 #### forms.py
 This module uses [Flask-WTForms](https://github.com/lepture/flask-wtf) to define the form to be used in the frontend. WTForms provide backend validation and security against CSRF attacks.
+* It defines an IntegerField for the input N and a SubmitField for the submit button.
 
 #### app.py
 This module creates the Flask instance to be used to run the app.
@@ -49,3 +51,36 @@ This module defines the routes to the application. It handles the incoming reque
 
 #### main.py
 This module ties the app.py and routes.py modules together and runs the application. The reason for this split into three different modules is to avoid any circular dependencies.
+
+### Testing
+##### Testing freq.py
+1. Normal usage
+![normal](http://u.cubeupload.com/gooseyloosey/normal.png)
+
+2. Incorrect URL
+![incorrect](http://u.cubeupload.com/gooseyloosey/incorrect.png)
+
+3. N not provided
+![no-N](http://u.cubeupload.com/gooseyloosey/noN.png)
+
+4. N too high
+![highN](http://u.cubeupload.com/gooseyloosey/highN.png)
+
+5. N is negative
+![negativeTerm](http://u.cubeupload.com/gooseyloosey/negativeTerm.png)
+
+#### Testing the app
+1. Normal usage
+![siteNormal](http://u.cubeupload.com/gooseyloosey/siteNormal.png)
+
+2. N not provided
+![siteNone](http://u.cubeupload.com/gooseyloosey/siteNone.png)
+
+3. N isn't an integer
+![notNum](http://u.cubeupload.com/gooseyloosey/notNum.png)
+
+4. N is less than 1
+![SiteNegative](http://u.cubeupload.com/gooseyloosey/negative.png)
+
+5. N too high
+![siteHigh](http://u.cubeupload.com/gooseyloosey/siteHigh.png)
