@@ -70,7 +70,7 @@ def main():
         print("Input n not provided in args: {}".format(ex))
         num = None
 
-    if int(num) < 1:
+    if num is not None and int(num) < 1:
         print("N can't be negative")
         sys.exit()
 
@@ -78,10 +78,11 @@ def main():
     cleaned = clean_text(file_text)
     nfreq, flag = parse_text(cleaned, num)
 
-    if flag:
-        print("N higher than total unique words, displaying all words instead")
-    
-    print("{} most frequent words:".format(num))
+    if num is None or flag:
+        print("N not provided or too high, displaying all words instead:")
+    else:
+        print("{} most frequent words:".format(num))
+
     for k, v in nfreq:
         print("{}\t{}".format(k, v))
 
