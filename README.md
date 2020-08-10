@@ -54,7 +54,7 @@ This module defines the routes to the application. It handles the incoming reque
 This module ties the app.py and routes.py modules together and runs the application. The reason for this split into three different modules is to avoid any circular dependencies.
 
 ### Testing
-##### Testing freq.py
+#### Testing freq.py
 1. Normal usage
 ![normal](http://u.cubeupload.com/gooseyloosey/normal.png)
 
