@@ -70,6 +70,9 @@ This module ties the app.py and routes.py modules together and runs the applicat
 5. N is negative
 ![negativeTerm](http://u.cubeupload.com/gooseyloosey/negativeTerm.png)
 
+6. Testing with a [different sample text file](https://www.w3.org/TR/PNG/iso_8859-1.txt)
+![differentSample](http://u.cubeupload.com/gooseyloosey/sample.png)
+
 #### Testing the app
 1. Normal usage
 ![siteNormal](http://u.cubeupload.com/gooseyloosey/siteNormal.png)
