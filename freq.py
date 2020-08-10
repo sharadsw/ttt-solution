@@ -64,6 +64,9 @@ def main():
     file_text = get_file(url)
     cleaned = clean_text(file_text)
     nfreq, flag = parse_text(cleaned, num)
+
+    if flag:
+        print("N higher than total unique words, displaying all words instead")
     
     print("{} most frequent words:".format(num))
     for k, v in nfreq:
