@@ -6,11 +6,19 @@ import sys
 # Fetches file from given url
 # Returns the text contained in the file
 def get_file(url):
-    res = requests.get(url)
+    try:
+        res = requests.get(url)
+    except Exception as ex:
+        print("URL possibly incorrect")
+        print("Error: {}".format(ex))
+        sys.exit()
+
     try:
         res.raise_for_status()
     except Exception as ex:
+        print("Site possibly unavailable")
         print("Error: {}".format(ex))
+        sys.exit()
 
     return res.text
 
